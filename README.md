@@ -25,7 +25,7 @@ $ git commit -m 'SDET-2691 foo'
 
 ## Install
 
-1. Create file with destination directories like `target-directories`
+1. Create file with destination directories with name like `target-directories` and content like (replace with your paths):
 ```
 /home/user/work/project1/.git/hooks/
 /home/user/work/project2/.git/hooks/
