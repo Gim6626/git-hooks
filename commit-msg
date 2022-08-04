@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Issue reference existence and branch match check hook for commit message
+
+COMMIT_MESSAGE_FILE=$1
+FIRST_COMMIT_MESSAGE_LINE=`head -1 "$COMMIT_MESSAGE_FILE"`
+ISSUE_REF_PATTERN="[A-Z]+-[0-9]+"
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if ! [[ "$FIRST_COMMIT_MESSAGE_LINE" =~ $ISSUE_REF_PATTERN ]]
+then
+    echo "ERROR: Missing issue reference in commit message" >&2
+    exit 1
+fi
+
+if echo "$FIRST_COMMIT_MESSAGE_LINE" | grep -v "$BRANCH" &> /dev/null
+then
+    echo "ERROR: Issue reference in commit message does not match current branch \"${BRANCH}\"" >&2
+    exit 1
+fi
+
+exit 0
