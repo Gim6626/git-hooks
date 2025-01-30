@@ -1,5 +1,7 @@
 # git-hooks
 
+![](img/logo256.png)
+
 ## Brief
 
 Various useful git hooks and related scripts
